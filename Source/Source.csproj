@@ -11,7 +11,6 @@
     <Folder Include="Services\" />
     <Folder Include="StaticFiles\Images\" />
     <Folder Include="StaticFiles\AudioFiles\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

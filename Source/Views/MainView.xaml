@@ -3,17 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Source.Views"
+        xmlns:local="clr-namespace:Source.Views" xmlns:ViewModels="clr-namespace:Source.ViewModels"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800">
+    <!--<Window.DataContext>
+        <ViewModels:MainViewModel></ViewModels:MainViewModel>
+    </Window.DataContext>-->
+    
     <StackPanel HorizontalAlignment="Center">
-        <ComboBox></ComboBox>
+        <ComboBox SelectedItem="{Binding SelectedCar}"  DisplayMemberPath="Model" ItemsSource="{Binding Cars}"></ComboBox>
         <TextBlock Text="Make"></TextBlock>
-        <TextBlock Text="{Binding Car.Make}"></TextBlock>
+        <TextBlock Text="{Binding SelectedCar.Make}"></TextBlock>
         <TextBlock Text="Model"></TextBlock>
-        <TextBlock  Text="{Binding Car.Model}"></TextBlock>
+        <TextBlock  Text="{Binding SelectedCar.Model}"></TextBlock>
         <TextBlock Text="Year"></TextBlock>
-        <TextBlock  Text="{Binding Car.Year}"></TextBlock>
+        <TextBlock  Text="{Binding SelectedCar.Year}"></TextBlock>
 
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding ShowCommand}">Show</Button>
