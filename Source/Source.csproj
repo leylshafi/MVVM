@@ -7,4 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ResourceDictionaries\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="StaticFiles\Images\" />
+    <Folder Include="StaticFiles\AudioFiles\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>
