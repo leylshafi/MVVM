@@ -17,17 +17,8 @@ namespace Source.Views;
 
 public partial class MainView : Window
 {
-    public ICommand ShowCommand { get; set; }
     public MainView()
     {
         InitializeComponent();
-        DataContext = this;
-        ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteShowCommand);
     }
-    void ExecuteShowCommand(object?parameter)
-    {
-        MessageBox.Show(txtBox.Text);
-    }
-    bool CanExecuteShowCommand(object? parameter)=>txtBox.Text.Length>3;
-    
 }
