@@ -19,11 +19,13 @@ public class MainViewModel
     public ObservableCollection<Car> Cars { get; set; }
     public Car? SelectedCar { get; set; }
     public ICommand ShowCommand { get; set; }
+    public ICommand AddCommand { get; set; }
     public MainViewModel(ICarRepository repository)
     {
         _repository = repository;
         Cars = new(_repository.GetList() ?? new List<Car>());
         ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteShowCommand);
+        AddCommand = new RelayCommand(ExecuteAddCommand);
     }
     void ExecuteShowCommand(object? parameter)
     {
@@ -31,5 +33,11 @@ public class MainViewModel
     }
     bool CanExecuteShowCommand(object? parameter)
     => SelectedCar is not null;
+
+    void ExecuteAddCommand(object? parameter)
+    {
+        Cars.Add(new Car { Id = 4, Make = "New", Model = "New", Year = 2022 });
+        MessageBox.Show("Added Successfully","Information",MessageBoxButton.OK,MessageBoxImage.Information);
+    }
 
 }

@@ -3,27 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Source.Views" xmlns:ViewModels="clr-namespace:Source.ViewModels"
+        xmlns:Views="clr-namespace:Source.Views" 
+        xmlns:ViewModels="clr-namespace:Source.ViewModels"
+        
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800">
-    <!--<Window.DataContext>
-        <ViewModels:MainViewModel></ViewModels:MainViewModel>
-    </Window.DataContext>-->
-    
-    <StackPanel HorizontalAlignment="Center">
-        <ComboBox SelectedItem="{Binding SelectedCar}"  DisplayMemberPath="Model" ItemsSource="{Binding Cars}"></ComboBox>
-        <TextBlock Text="Make"></TextBlock>
-        <TextBlock Text="{Binding SelectedCar.Make}"></TextBlock>
-        <TextBlock Text="Model"></TextBlock>
-        <TextBlock  Text="{Binding SelectedCar.Model}"></TextBlock>
-        <TextBlock Text="Year"></TextBlock>
-        <TextBlock  Text="{Binding SelectedCar.Year}"></TextBlock>
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+                <Views:HomeView/>
+            </DataTemplate>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding ShowCommand}">Show</Button>
-            <Button Command="{Binding AddCommand}">Add</Button>
-            <Button Command="{Binding UpdateCommand}">Update</Button>
-            <Button Command="{Binding DeleteCommand}">Delete</Button>
-        </StackPanel>
-    </StackPanel>
+            <DataTemplate DataType="{x:Type ViewModels:AddViewModel}">
+                <Views:AddView/>
+            </DataTemplate>
+
+        </ContentControl.Resources>
+    </ContentControl>
+    
+   
 </Window>
