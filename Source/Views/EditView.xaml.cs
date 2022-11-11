@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Source.Views
 {
     /// <summary>
-    /// Interaction logic for AddView.xaml
+    /// Interaction logic for EditView.xaml
     /// </summary>
-    public partial class AddView : UserControl
+    public partial class EditView : UserControl
     {
-        public AddView()
+        public EditView()
         {
             InitializeComponent();
         }

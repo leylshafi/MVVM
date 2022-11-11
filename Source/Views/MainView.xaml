@@ -18,8 +18,11 @@
                 <Views:AddView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type ViewModels:EditViewModel}">
+                <Views:EditView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
-    
-   
+
+
 </Window>
