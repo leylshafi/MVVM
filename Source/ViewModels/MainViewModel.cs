@@ -1,5 +1,6 @@
 ﻿using Source.Command;
 using Source.Models;
+using Source.Navigation;
 using Source.Repositories.Abstract;
 using Source.Repositories.Concrete;
 using System;
@@ -13,31 +14,17 @@ using System.Windows.Input;
 
 namespace Source.ViewModels;
 
-public class MainViewModel
+public class MainViewModel : BaseViewModel
 {
-    private readonly ICarRepository _repository;
-    public ObservableCollection<Car> Cars { get; set; }
-    public Car? SelectedCar { get; set; }
-    public ICommand ShowCommand { get; set; }
-    public ICommand AddCommand { get; set; }
-    public MainViewModel(ICarRepository repository)
-    {
-        _repository = repository;
-        Cars = new(_repository.GetList() ?? new List<Car>());
-        ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteShowCommand);
-        AddCommand = new RelayCommand(ExecuteAddCommand);
-    }
-    void ExecuteShowCommand(object? parameter)
-    {
-        MessageBox.Show(SelectedCar?.Model);
-    }
-    bool CanExecuteShowCommand(object? parameter)
-    => SelectedCar is not null;
+    private readonly NavigationStore _navigationStore;
 
-    void ExecuteAddCommand(object? parameter)
+    public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
+
+    public MainViewModel(NavigationStore navigationStore)
     {
-        Cars.Add(new Car { Id = 4, Make = "New", Model = "New", Year = 2022 });
-        MessageBox.Show("Added Successfully","Information",MessageBoxButton.OK,MessageBoxImage.Information);
+        _navigationStore = navigationStore;
+        navigationStore.CurrentViewModelChanged += NavigationStore_CurrentViewModelChanged;
     }
 
+    private void NavigationStore_CurrentViewModelChanged() => OnPropertyChanged(nameof(CurrentViewModel));
 }
